@@ -1,0 +1,128 @@
+<!-- mempool.component.html -->
+<h2 style="text-transform: uppercase; margin: 10px; margin-top: 20px;">Mempool</h2>
+<div class="blocks-container">
+  <table class="blocks-table">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th class="hash-column">Transaction Hash</th>
+        <th>in/out</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let transaction of mempoolData">
+        <tr (click)="toggleDetails(transaction)">
+          <td>{{ dateFormatService.formatTransactionTime(transaction.time) }}</td>
+          <td class="hash-column">{{ transaction.hash }}</td>
+          <td>{{ transaction.inputs.length }} / {{ transaction.outputs.length }}</td>
+          <td>
+            <button class="transaction-type-button" [ngClass]="{
+              'coinbase': transactionUtilsService.isCoinbaseTransaction(transaction),
+              'transfer': transactionUtilsService.isTransferTransaction(transaction),
+              'create-identity': transactionUtilsService.isCreateIdentityTransaction(transaction),
+              'encrypted-message': transactionUtilsService.isEncryptedMessageTransaction(transaction),
+              'message': transactionUtilsService.isMessageTransaction(transaction)
+            }">
+              {{ transactionUtilsService.getTransactionType(transaction) }}
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="expandedTransaction && expandedTransaction.id === transaction.id" class="expanded-row">
+          <td colspan="4">
+
+              <div *ngIf="transactionUtilsService.isTransferTransaction(transaction)">
+                  <div class="transaction-details">
+                      <p><strong>Transaction Hash: </strong><a href="/explorer?term={{transaction.hash}}">{{ transaction.hash }}</a></p>
+                      <p><strong>Transaction ID: </strong><a href="/explorer?term={{transaction.id}}">{{ transaction.id }}</a></p>
+                      <p><strong>Fee: </strong>{{ transaction.fee }} YDA</p>
+                      <div class="row">
+                          <div class="col-md-12">
+                              <p><strong>Inputs:</strong> {{ transaction.inputs.length }}</p>
+                              <div class="input-section" style="width: 100%; display: inline-block; margin-top: 5px;">
+                                  <button class="accordion" (click)="toggleAccordion('inputsAccordion')">Show Inputs</button>
+                                  <div class="panel" *ngIf="showAccordion === 'inputsAccordion'">
+                                      <ul>
+                                          <li *ngFor="let input of transaction.inputs">
+                                              <a href="/explorer?term={{input.id}}">{{ input.id }}</a>
+                                          </li>
+                                      </ul>
+                                  </div>
+                              </div>
+                              <p><strong>Outputs:</strong> {{ transaction.outputs.length }}</p>
+                          </div>
+                      </div>
+
+                      <div class="row in-section" style="margin-top: 5px;">
+                          <div class="col-md-5">
+                              <div class="transfer-in-info-box">
+                                  <p style="margin-left: 10px;">
+                                      <a href="/explorer?term={{ transaction.outputs.slice(-1)[0]?.to }}">{{ transaction.outputs.slice(-1)[0]?.to }}</a>
+                                      <button class="transaction-value-button">{{ getTotalValue(transaction.outputs).toFixed(6) }} YDA</button>
+                                  </p>
+                              </div>
+                          </div>
+                          <div class="col-md-2 text-center">
+                              <img src="yadacoinstatic/explorer/assets/arrow-right.png" alt="Arrow Right" class="arrow-icon">
+                          </div>
+                          <div class="col-md-5">
+                              <div *ngFor="let output of transaction.outputs">
+                                  <div class="transfer-out-info-box">
+                                      <p style="margin-left: 10px;">
+                                          <a href="/explorer?term={{output.to}}">{{output.to}}</a>
+                                          <button class="transaction-value-button">{{ output.value.toFixed(6) }} YDA</button>
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div *ngIf="transactionUtilsService.isCreateIdentityTransaction(transaction)">
+                  <div class="transaction-details">
+                      <p class="col-12"><strong>Transaction Hash: </strong><a href="/explorer?term={{transaction.hash}}">{{ transaction.hash }}</a></p>
+                      <p class="col-12"><strong>Transaction ID: </strong><a href="/explorer?term={{transaction.id}}">{{ transaction.id }}</a></p>
+                      <p class="col-12"><strong>Relationship Identifier:</strong> {{ transaction.rid }}</p>
+                      <div class="relationship-data-box">
+                          <h4 style="text-transform: uppercase; margin: 10px;">Relationship DATA:</h4>
+                          <textarea rows="4" style="width: 98%;" readonly>{{ transaction.relationship }}</textarea>
+                      </div>
+                      <div class="in-section col-md-5" style="margin-top: 5px;">
+                          <div class="transfer-out-info-box">
+                              <button class="transaction-type-button create-identity">Newly created Address</button>
+                              <p style="margin-left: 15px"><a href="/explorer?term={{ transaction.outputs.slice(-1)[0]?.to }}">{{ transaction.outputs.slice(-1)[0]?.to }}</a></p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div *ngIf="transactionUtilsService.isEncryptedMessageTransaction(transaction)">
+                  <div class="transaction-details">
+                      <p class="col-12"><strong>Transaction Hash: </strong><a href="/explorer?term={{transaction.hash}}">{{ transaction.hash }}</a></p>
+                      <p class="col-12"><strong>Transaction ID: </strong><a href="/explorer?term={{transaction.id}}">{{ transaction.id }}</a></p>
+                      <p class="col-12"><strong>Relationship Identifier:</strong> {{ transaction.rid }}</p>
+                      <div class="relationship-data-box">
+                          <h4 style="text-transform: uppercase; margin: 10px;">Relationship DATA:</h4>
+                          <textarea rows="4" style="width: 98%;" readonly>{{ transaction.relationship }}</textarea>
+                      </div>
+                  </div>
+              </div>
+
+              <div *ngIf="transactionUtilsService.isMessageTransaction(transaction)">
+                  <div class="transaction-details">
+                      <p class="col-12"><strong>Transaction Hash: </strong><a href="/explorer?term={{transaction.hash}}">{{ transaction.hash }}</a></p>
+                      <p class="col-12"><strong>Transaction ID: </strong><a href="/explorer?term={{transaction.id}}">{{ transaction.id }}</a></p>
+                      <p class="col-12"><strong>Relationship Identifier:</strong> {{ transaction.rid }}</p>
+                      <div class="relationship-data-box">
+                          <h4 style="text-transform: uppercase; margin: 10px;">Relationship DATA:</h4>
+                          <textarea rows="4" style="width: 98%;" readonly>{{ transaction.relationship }}</textarea>
+                      </div>
+                  </div>
+              </div>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

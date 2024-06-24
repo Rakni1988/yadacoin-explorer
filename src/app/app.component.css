@@ -1,0 +1,120 @@
+body {
+  background-color: #c0c0c0;
+  margin: 30px 5%;
+  color: #303030;
+}
+
+.content {
+  margin-bottom: 5%;
+}
+
+.logo {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.form-inline {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.form-control {
+  flex: 1;
+}
+
+.btn {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.navbar-nav .nav-item .nav-link {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: white;
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.navbar-nav .nav-link {
+  padding: 0.5rem 1rem;
+}
+
+.navbar-nav .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-toggler {
+  margin-right: 15px;
+}
+
+
+.result-box {
+  padding: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+  color: white;
+  text-align: left;
+  position: relative;
+  background-color: #343a40;
+}
+
+.result-box h5,
+.result-box h3 {
+  margin: 10px;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+.result-box h3 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.watermark {
+  width: auto;
+  height: 95%;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 0;
+}
+
+.footer {
+  background-color: #1f2428;
+  color: white;
+  padding: 2px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  font-size: 12px;
+}
+
+.pagination {
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.go-button {
+  margin-left: 5px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: background-color 0.3s;
+  background-color: #1e87cf
+}
+
+.footer p {
+  margin: 2px 0;
+}

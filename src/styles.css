@@ -1,0 +1,270 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+body {
+  background-color: #c0c0c0;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  color: #303030;
+}
+
+a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+a:hover {
+  color: grey;
+}
+
+.blocks-container {
+  margin: 10px;
+  padding: 20px;
+  background-color: #343a40;
+  border-radius: 5px;
+  color: white;
+  word-wrap: break-word;
+  overflow-x: auto;
+  font-size: 16px;
+}
+
+@media (max-width: 767px) {
+  .blocks-container {
+    padding: 10px;
+    margin: 5px;
+    font-size: 14px;
+  }
+}
+
+.block-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  overflow: auto;
+}
+
+.previous-button,
+.next-button {
+  background: #343a40;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.previous-button:hover {
+  background: #3498db;
+}
+
+.next-button:hover {
+  background: #3498db;
+}
+
+.accordion {
+  background: #424242;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.accordion:hover {
+  background: #3498db;
+}
+
+.blocks-table {
+  width: 100%;
+  table-layout: auto;
+  overflow-x: auto;
+}
+
+.blocks-table th,
+.blocks-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  border-radius: 5px;
+}
+
+.blocks-table th {
+  background-color: #1f2428;
+  color: white;
+  border-radius: 5px;
+}
+
+.blocks-table tbody tr:hover {
+  background-color: #1f2428;
+  color: white;
+  cursor: pointer;
+}
+
+.blocks-table tbody tr.expanded-row {
+  cursor: default;
+  word-wrap: break-word;
+  overflow-x: auto;
+}
+
+.blocks-table tbody tr.expanded-row td[colspan="5"] .transaction-details {
+  word-wrap: break-word;
+  overflow-x: auto;
+}
+
+.blocks-table th.hash-column,
+.blocks-table td.hash-column {
+  word-break: break-word;
+  white-space: normal;
+}
+
+.transaction-table {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.transaction-table th, .transaction-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.transaction-table th {
+  background-color: #424242;
+}
+
+.expanded-row {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+.transaction-section {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.transaction-box {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.in-section,
+.out-section {
+  vertical-align: top;
+}
+
+.arrow-box {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.transaction-details {
+  background-color: #1f2428;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
+  display: inline-block;
+  word-break: break-word;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.transfer-in-info-box,
+.transfer-out-info-box,
+.arrow-box {
+  background-color: #343a40;
+  border-radius: 10px;
+  margin-top: 5px;
+  padding: 5px;
+  font-size: 0.9em;
+  display: block;
+  align-items: center;
+}
+
+.transfer-in-info-box {
+  border: 2px solid #4CAF50;
+  color: white;
+}
+
+.transfer-out-info-box {
+  border: 2px solid #3498db;
+  color: white;
+}
+
+.arrow-icon {
+  width: 50px;
+  height: auto;
+}
+
+.transaction-value-button {
+  padding: 2px;
+  border: none;
+  border-radius: 3px;
+  cursor: default;
+  background-color: #3498db;
+  color: white;
+  display: block;
+}
+
+.searched-item {
+  color: yellow;
+  font-weight: bold;
+}
+
+.transaction-type-button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  margin-top: 5px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: background-color 0.3s;
+}
+
+.coinbase {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.coinbase:hover {
+  background-color: #45a049;
+  color: white;
+}
+
+.transfer {
+  background-color: #3498db;
+  color: white;
+}
+
+.transfer:hover {
+  background-color: #1e87cf;
+  color: white;
+}
+
+.create-identity {
+  background-color: #f39c12;
+  color: white;
+}
+
+.create-identity:hover {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.encrypted-message, .message {
+  background-color: #8b5ef6;
+  color: white;
+}
+
+.encrypted-message:hover, .message:hover {
+  background-color: #6a1b9a;
+  color: white;
+}
+

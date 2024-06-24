@@ -1,0 +1,20 @@
+<!-- address-balance.component.html -->
+<h2 class="button" style="text-transform: uppercase; margin: 10px; margin-top: 20px;">Address Balance</h2>
+<div class="address-balance-container">
+
+  <label for="addressInput">Enter Your Wallet Address:</label>
+  <div style="display: flex;">
+    <input id="addressInput" type="text" [(ngModel)]="address" class="search-container">
+    <button class="button btn-success" (click)="getBalance()" [disabled]="loading">Get balance</button>
+  </div>
+
+  <div style="margin-top: 10px;">
+    <strong>Your Address:</strong> {{address}}
+  </div>
+
+  <div *ngIf="loading" class="loading-message"><strong>Loading...</strong></div>
+  <div *ngIf="!loading && balance !== null" class="result">
+    <strong>Your Balance:</strong> {{balance}}
+  </div>
+</div>
+

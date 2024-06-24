@@ -1,0 +1,39 @@
+/* address-balance.component.css */
+.address-balance-container {
+  margin: 10px;
+  padding: 20px;
+  background-color: #424242;
+  border-radius: 5px;
+  color: white;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+button.btn-success {
+  background-color: green; /* Kolor tła przycisku Search */
+  color: white; /* Kolor tekstu przycisku Search */
+  padding: 8px 20px; /* Dostosowana wysokość i szerokość przycisku */
+  border: none; /* Grubość i kolor obwódki */
+  cursor: pointer;
+  transition: background 0.3s ease; /* Dodaj płynne przejście */
+  border-radius: 5px;
+  height: 40px;
+}
+
+.loading-message {
+  margin-top: 10px;
+}
+
+.result {
+  margin-top: 10px;
+}
